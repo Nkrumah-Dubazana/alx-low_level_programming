@@ -1,14 +1,21 @@
 section .data
-    format db 'Hello, Holberton', 0
+    msg db 'Hello, Holberton', 0
+    fmt db "%s", 10, 0
 
 section .text
-    global main
     extern printf
+    global main
 
 main:
-    mov edi, format
-    xor eax, eax
+    push rbp
+
+    mov rdi, fmt
+    mov rsi, msg
+    xor rax, rax
     call printf
-    mov eax, 0
+
+    pop rbp
+
+    xor rax, rax
     ret
 
